@@ -1,0 +1,117 @@
+{
+  "quiz": [
+    {
+      "question": "Can you guess the name of this planet?",
+      "hints": [
+        "Largest planet in our solar system",
+        "Famous for its Great Red Spot",
+        "Has 79 moons",
+        "5th planet from the Sun"
+      ],
+      "answer": "Jupiter"
+    },
+    {
+      "question": "Can you guess the name of this constellation?",
+      "hints": [
+        "Shaped like a hunter",
+        "Brightest star is Rigel",
+        "Located on the celestial equator",
+        "Has a famous three-star belt"
+      ],
+      "answer": "Orion"
+    },
+    {
+      "question": "Can you guess the name of this moon?",
+      "hints": [
+        "One of Jupiter’s Galilean moons",
+        "Icy surface with potential subsurface ocean",
+        "Known for possibly harboring life"
+      ],
+      "answer": "Europa"
+    },
+    {
+      "question": "Can you guess the name of this mathematician?",
+      "hints": [
+        "Known for stable points in space",
+        "JWST is parked at one of his points",
+        "Lived in the 18th century",
+        "Contributed to celestial mechanics"
+      ],
+      "answer": "Lagrange"
+    },
+    {
+      "question": "Can you guess the name of this planet?",
+      "hints": [
+        "Famous for its rings",
+        "Has a hexagon-shaped storm at its north pole",
+        "145 moons",
+        "6th planet from the Sun"
+      ],
+      "answer": "Saturn"
+    },
+    {
+      "question": "Can you guess the name of this star?",
+      "hints": [
+        "Red supergiant in the Orion constellation",
+        "Variable in brightness",
+        "Famous name often avoided saying three times"
+      ],
+      "answer": "Betelgeuse"
+    },
+    {
+      "question": "Can you guess the name of this moon?",
+      "hints": [
+        "One of Jupiter’s Galilean moons",
+        "Most geologically active place in the solar system",
+        "Volcanic surface"
+      ],
+      "answer": "Io"
+    },
+    {
+      "question": "Can you guess the name of this moon?",
+      "hints": [
+        "Largest moon of Saturn",
+        "Thick atmosphere with methane lakes",
+        "Bigger than Mercury"
+      ],
+      "answer": "Titan"
+    },
+    {
+      "question": "Can you guess the name of this moon?",
+      "hints": [
+        "One of Jupiter’s Galilean moons",
+        "Heavily cratered surface",
+        "Known for being the most heavily cratered object in the solar system"
+      ],
+      "answer": "Callisto"
+    },
+    {
+      "question": "Can you guess the name of this telescope?",
+      "hints": [
+        "Orbits Earth",
+        "Launched in 1990",
+        "Famous for high-resolution space images"
+      ],
+      "answer": "Hubble"
+    },
+    {
+      "question": "Can you guess the name of this moon?",
+      "hints": [
+        "Moon of Saturn",
+        "Icy geysers that eject water vapor",
+        "Might have a subsurface ocean"
+      ],
+      "answer": "Enceladus"
+    },
+    {
+      "question": "Can you guess the name of this star?",
+      "hints": [
+        "It’s the center of our solar system",
+        "A yellow dwarf star",
+        "Provides light and energy to Earth",
+        "Also known as Sol"
+      ],
+      "answer": "Sun"
+    }
+  ]
+}

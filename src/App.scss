@@ -1,0 +1,95 @@
+#root {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+.wrapper {
+    gap: 0.5rem;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.card {
+    min-width: 20rem;
+    background-color: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(5px);
+    padding: 1rem;
+    display: grid;
+    grid-auto-rows: 2fr auto 3fr;
+
+    li {
+        text-align: left;
+    }
+
+    input {
+        background-color: transparent;
+        box-shadow: none;
+        border: 1px solid #252525;
+        padding: 0.5rem 1rem;
+
+        &:active, &:focus-within {
+            outline: 1px solid #252525;;
+        }
+    }
+
+    .input--correct {
+        border-color: #4da419;
+    }
+    .input--wrong {}
+
+    &--answer {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.background {
+    position: fixed;
+    z-index: -1;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    place-items: center;
+
+    &::before {
+        content: '';
+        background-color: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(10px);
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        transition: all 300ms ease-in-out;
+    }
+
+    &--removeBlur {
+        &::before {
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(0);
+        }
+    }
+}
+
+.answer {
+    position: relative;
+    z-index: 5;
+    color: white;
+    font-size: 10rem;
+    letter-spacing: 0.1rem;
+    margin-bottom: 5rem;
+    display: flex;
+}
+
+button {
+    position: fixed;
+    left: 2rem;
+}
+
+
+
