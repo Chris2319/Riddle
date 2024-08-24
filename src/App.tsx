@@ -101,19 +101,19 @@ function App() {
     };
 
     const handleCorrect = (item: QuizQuestion, index: number): boolean => {
-        return answers?.[item.answer]?.toLowerCase() === correctAnswers[index]?.toLowerCase();
+        return answers?.[item.answer as keyof typeof answers]?.toLowerCase() === correctAnswers[index]?.toLowerCase();
     };
 
     const removeBlur = () => {
         const index = correctAnswers.findIndex((a) => a === activeItem.answer);
-        if (index > -1 && answers[activeItem?.answer]?.toLowerCase() === correctAnswers[index]?.toLowerCase()) return true;
+        if (index > -1 && answers[activeItem?.answer as keyof typeof answers]?.toLowerCase() === correctAnswers[index]?.toLowerCase()) return true;
         return false;
     };
 
     const areAnswersCorrect = () => {
-        const userAnswers = Object.values(answers as any);
+        const userAnswers = Object.values(answers as any) as any;
         return correctAnswers.every((correctAnswer, index) =>
-            correctAnswer.toLowerCase() === userAnswers[index].toLowerCase()
+            correctAnswer.toLowerCase() === userAnswers[index as any].toLowerCase()
         );
     };
 
@@ -162,7 +162,7 @@ function App() {
 
                             {
                                 handleCorrect(item, index) ?
-                                    <div className={'card--answer'}>{item.answer.split('').map((l, li) =>
+                                    <div className={'card--answer'}>{item.answer.split('').map((l: string, li: number) =>
                                         li === 0 ? (areAnswersCorrect() ? <div>{l.toUpperCase()}</div> :
                                                 <motion.div transition={{duration: 2, delay: 1}}
                                                             layoutId={(index === 10 || index === 11 || index === 12) ? l.toUpperCase() + '2' : l.toUpperCase()}>{l}</motion.div>) :
@@ -170,13 +170,13 @@ function App() {
                                         className={handleCorrect(item, index) ? 'input--correct' : 'input--wrong'}
                                         placeholder={'*'.repeat(item.answer.length)}
                                         disabled={handleCorrect(item, index)}
-                                        value={answers[item.answer]}
+                                        value={answers[item.answer as keyof typeof answers]}
                                         onChange={(e) => handleOnChange(e.target.value, item.answer)}/>
                             }
 
 
                             <ul>
-                                {item.hints.map((hint) => (
+                                {item.hints.map((hint: string) => (
                                     <li key={hint}>{hint}</li>
                                 ))}
                             </ul>
