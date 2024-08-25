@@ -73,7 +73,7 @@ function App() {
         'Enceladus': enceladusImage,
         'Sun': sunImage
     });
-    const [activeItem, setActiveItem] = useState<QuizQuestion>({answer: 'Jupiter'} as QuizQuestion);
+    const [activeItem, setActiveItem] = useState<QuizQuestion>({answer: 'Jupiter', } as QuizQuestion);
     const [areAnswersCorrect, setAreAnswersCorrect] = useState<boolean>(false);
     const [showCards, setShowCards] = useState<boolean>(false);
     const correctAnswers = [
