@@ -176,21 +176,21 @@ function App() {
     return (
         <div className={'wrapper'}>
             <AnimatePresence>
-                <button onClick={() => setAnswers({
-                    'Jupiter': 'Jupiter',
-                    'Orion': 'Orion',
-                    'Europa': 'Europa',
-                    'Lagrange': 'Lagrange',
-                    'Saturn': 'Saturn',
-                    'Betelgeuse': 'Betelgeuse',
-                    'Io': 'Io',
-                    'Titan': 'Titan',
-                    'Callisto': 'Callisto',
-                    'Hubble': 'Hubble',
-                    'Enceladus': 'Enceladus',
-                    'Sun': 'Sun'
-                })}>correct all
-                </button>
+                {/*<button onClick={() => setAnswers({*/}
+                {/*    'Jupiter': 'Jupiter',*/}
+                {/*    'Orion': 'Orion',*/}
+                {/*    'Europa': 'Europa',*/}
+                {/*    'Lagrange': 'Lagrange',*/}
+                {/*    'Saturn': 'Saturn',*/}
+                {/*    'Betelgeuse': 'Betelgeuse',*/}
+                {/*    'Io': 'Io',*/}
+                {/*    'Titan': 'Titan',*/}
+                {/*    'Callisto': 'Callisto',*/}
+                {/*    'Hubble': 'Hubble',*/}
+                {/*    'Enceladus': 'Enceladus',*/}
+                {/*    'Sun': 'Sun'*/}
+                {/*})}>correct all*/}
+                {/*</button>*/}
                 {areAnswersCorrect && <button onClick={() => setShowCards(!showCards)}>Toggle cards</button>}
 
                 <div className={'background '}>
