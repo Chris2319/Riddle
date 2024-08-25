@@ -244,7 +244,7 @@ function App() {
                             }
 
                             <motion.ul variants={vUl} initial={'hidden'} animate={removeBlur(item) ? 'hidden' : 'visible'}>
-                                {item.hints.map((hint: string, hIndex) => (
+                                {item.hints.map((hint: string, hIndex: number) => (
                                     <motion.li
                                         variants={vLi}
                                         initial={'visible'}
