@@ -82,7 +82,8 @@ const answerImages = {
     'Hubble': hubbleImage,
     'Eclipse': eclipseImage,
     'Sun': sunImage
-}
+};
+const splineUrl = 'https://prod.spline.design/UnWOMLkS9rzBfEZy/scene.splinecode';
 
 function App() {
     // State
@@ -91,6 +92,7 @@ function App() {
     const [activeItem, setActiveItem] = useState<QuizQuestion>({answer: 'Jupiter',} as QuizQuestion);
     const [areAnswersCorrect, setAreAnswersCorrect] = useState<boolean>(false);
     const [showCards, setShowCards] = useState<boolean>(false);
+    const [isLoaded, setIsLoaded] = useState(false);
 
     // Framer motion
     const vCard = {
@@ -107,6 +109,23 @@ function App() {
     };
 
     // Effects
+    useEffect(() => {
+        const preloadSplineAsset = async () => {
+            try {
+                // Preload the Spline asset by fetching it
+                const response = await fetch(splineUrl, { method: 'HEAD' });
+                if (response.ok) {
+                    setIsLoaded(true);
+                    console.log('success');
+                }
+            } catch (error) {
+                console.error('Error preloading Spline asset:', error);
+            }
+        };
+
+        preloadSplineAsset();
+    }, [splineUrl]);
+
     useEffect(() => {
         const userAnswers = Object.values(answers);
 
@@ -237,7 +256,7 @@ function App() {
                         </div>
                     }
                     <div className={'spline'}>
-                        {areAnswersCorrect &&
+                        {areAnswersCorrect && isLoaded &&
                             <Spline scene={'https://prod.spline.design/UnWOMLkS9rzBfEZy/scene.splinecode'}/>}
                     </div>
                 </div>
