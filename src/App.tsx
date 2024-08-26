@@ -4,15 +4,15 @@ import {useEffect, useState} from 'react';
 import {AnimatePresence, motion} from 'framer-motion';
 import jupiterImage from './assets/jupiter+nasa+photo.jpg';
 import orionImage from './assets/Orion.jpg';
-import europaImage from './assets/Europa.webp';
-import lagrangeImage from './assets/Lagrange.jpg';
+import earthImage from './assets/earth.jpg';
+import leoImage from './assets/Leo.jpg';
 import saturnImage from './assets/saturn.jpg';
 import betelgeuseImage from './assets/beetle.webp';
 import ioImage from './assets/Io.jpg';
 import titanImage from './assets/Titan.jpeg';
-import callistoImage from './assets/Callisto.jpg';
+import cometImage from './assets/comet.webp';
 import hubbleImage from './assets/hubble.jpeg';
-import enceladusImage from './assets/Enceladus.jpg';
+import eclipseImage from './assets/Eclipse.jpg';
 import sunImage from './assets/sun.jpg';
 import Spline from '@splinetool/react-spline';
 
@@ -29,58 +29,58 @@ interface QuizData {
 interface Answers {
     Jupiter: string;
     Orion: string;
-    Europa: string;
-    Lagrange: string;
+    Earth: string;
+    Leo: string;
     Saturn: string;
     Betelgeuse: string;
     Io: string;
     Titan: string;
-    Callisto: string;
+    Comet: string;
     Hubble: string;
-    Enceladus: string;
+    Eclipse: string;
     Sun: string;
 }
 
 const correctAnswers = [
     'Jupiter',
     'Orion',
-    'Europa',
-    'Lagrange',
+    'Earth',
+    'Leo',
     'Saturn',
     'Betelgeuse',
     'Io',
     'Titan',
-    'Callisto',
+    'Comet',
     'Hubble',
-    'Enceladus',
+    'Eclipse',
     'Sun',
 ];
 const emptyAnswers = {
     'Jupiter': '',
     'Orion': '',
-    'Europa': '',
-    'Lagrange': '',
+    'Earth': '',
+    'Leo': '',
     'Saturn': '',
     'Betelgeuse': '',
     'Io': '',
     'Titan': '',
-    'Callisto': '',
+    'Comet': '',
     'Hubble': '',
-    'Enceladus': '',
+    'Eclipse': '',
     'Sun': ''
 };
 const answerImages = {
     'Jupiter': jupiterImage,
     'Orion': orionImage,
-    'Europa': europaImage,
-    'Lagrange': lagrangeImage,
+    'Earth': earthImage,
+    'Leo': leoImage,
     'Saturn': saturnImage,
     'Betelgeuse': betelgeuseImage,
     'Io': ioImage,
     'Titan': titanImage,
-    'Callisto': callistoImage,
+    'Comet': cometImage,
     'Hubble': hubbleImage,
-    'Enceladus': enceladusImage,
+    'Eclipse': eclipseImage,
     'Sun': sunImage
 }
 
@@ -148,11 +148,11 @@ function App() {
             case 'Orion':
                 style.transformOrigin = '50% 50%'
                 break;
-            case 'Europa':
+            case 'Earth':
                 style.backgroundPosition = '0 10rem';
                 style.transformOrigin = '50% 80%'
                 break;
-            case 'Lagrange':
+            case 'Leo':
                 style.transformOrigin = '50% 50%'
                 break;
             case 'Saturn':
@@ -170,14 +170,15 @@ function App() {
             case 'Titan':
                 style.backgroundPosition = 'center 10rem';
                 break;
-            case 'Callisto':
-                style.backgroundPosition = 'center 8rem';
+            case 'Comet':
+                style.backgroundPosition = 'center -2rem';
                 style.backgroundSize = '150%';
+                style.transformOrigin = '50% 100%'
                 break;
             case 'Hubble':
                 style.transformOrigin = '50% 0'
                 break;
-            case 'Enceladus':
+            case 'Eclipse':
                 style.transformOrigin = '50% 0'
                 break;
         }
@@ -202,15 +203,15 @@ function App() {
                     <button onClick={() => setAnswers({
                         'Jupiter': 'Jupiter',
                         'Orion': 'Orion',
-                        'Europa': 'Europa',
-                        'Lagrange': 'Lagrange',
+                        'Earth': 'Earth',
+                        'Leo': 'Leo',
                         'Saturn': 'Saturn',
                         'Betelgeuse': 'Betelgeuse',
                         'Io': 'Io',
                         'Titan': 'Titan',
-                        'Callisto': 'Callisto',
+                        'Comet': 'Comet',
                         'Hubble': 'Hubble',
-                        'Enceladus': 'Enceladus',
+                        'Eclipse': 'Eclipse',
                         'Sun': 'Sun'
                     })}>correct all
                     </button>

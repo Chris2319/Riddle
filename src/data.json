@@ -21,23 +21,22 @@
       "answer": "Orion"
     },
     {
-      "question": "Can you guess the name of this moon?",
+      "question": "Can you name this planet we live on?",
       "hints": [
-        "One of Jupiter’s Galilean moons",
-        "Icy surface with potential subsurface ocean",
-        "Known for possibly harboring life"
+        "127.0.0.1",
+        "Only known planet to support life",
+        "Has one natural satellite (the Moon)"
       ],
-      "answer": "Europa"
+      "answer": "Earth"
     },
     {
-      "question": "Can you guess the name of this mathematician?",
+      "question": "Can you guess this constellation?",
       "hints": [
-        "Known for stable points in space",
-        "JWST is parked at one of his points",
-        "Lived in the 18th century",
-        "Contributed to celestial mechanics"
+        "Named after a lion",
+        "Prominent in the spring sky of the Northern Hemisphere",
+        "SA developer"
       ],
-      "answer": "Lagrange"
+      "answer": "Leo"
     },
     {
       "question": "Can you guess the name of this planet?",
@@ -63,7 +62,8 @@
       "hints": [
         "One of Jupiter’s Galilean moons",
         "Most geologically active place in the solar system",
-        "Volcanic surface"
+        "Volcanic surface",
+        "Shares its name with a common input-output abbreviation in tech"
       ],
       "answer": "Io"
     },
@@ -72,18 +72,19 @@
       "hints": [
         "Largest moon of Saturn",
         "Thick atmosphere with methane lakes",
-        "Bigger than Mercury"
+        "Bigger than Mercury",
+        "Clash of the ______"
       ],
       "answer": "Titan"
     },
     {
-      "question": "Can you guess the name of this moon?",
+      "question": "Can you guess this celestial object?",
       "hints": [
-        "One of Jupiter’s Galilean moons",
-        "Heavily cratered surface",
-        "Known for being the most heavily cratered object in the solar system"
+        "Often has a bright tail visible from Earth",
+        "Made up of ice, dust, and rocky material",
+        "Famous examples include Halley's and Hale-Bopp"
       ],
-      "answer": "Callisto"
+      "answer": "Comet"
     },
     {
       "question": "Can you guess the name of this telescope?",
@@ -95,13 +96,13 @@
       "answer": "Hubble"
     },
     {
-      "question": "Can you guess the name of this moon?",
+      "question": "Can you guess this astronomical event?",
       "hints": [
-        "Moon of Saturn",
-        "Icy geysers that eject water vapor",
-        "Might have a subsurface ocean"
+        "Occurs when one celestial body moves into the shadow of another",
+        "Can be solar or lunar",
+        "Also the name of a popular Java IDE"
       ],
-      "answer": "Enceladus"
+      "answer": "Eclipse"
     },
     {
       "question": "Can you guess the name of this star?",
