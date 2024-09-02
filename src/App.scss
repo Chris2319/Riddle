@@ -3,6 +3,7 @@
   margin: 0 auto;
   text-align: center;
   height: 100%;
+  font-size: 14px;
 }
 
 body {
@@ -152,3 +153,46 @@ h3 {
   z-index: 5;
 }
 
+.thug {
+
+  position: absolute;
+  left: 50%;
+  top: 35vh;
+  transform: translate(-50%, 0);
+  z-index: 50;
+
+  .cap {
+    width: 13rem;
+    height: 13em;
+    position: absolute;
+    left: 18%;
+    top: -17%;
+    z-index: 55;
+  }
+
+  .joint {
+    width: 5rem;
+    height: 5em;
+    position: absolute;
+    left: 52%;
+    top: 57%;
+    transform: rotateY(180deg);
+    z-index: 55;
+  }
+
+  .glasses {
+    width: 10rem;
+    height: 10rem;
+    position: absolute;
+    left: 28%;
+    top: 16%;
+    z-index: 55;
+  }
+
+  .joel {
+    width: 20rem;
+    height: 20rem;
+    z-index: 52;
+  }
+
+}

@@ -14,7 +14,11 @@ import cometImage from './assets/comet.webp';
 import hubbleImage from './assets/hubble.jpeg';
 import eclipseImage from './assets/Eclipse.jpg';
 import sunImage from './assets/sun.jpg';
-import Spline from '@splinetool/react-spline';
+import thugLifeImage from './assets/thugLife.png';
+import thugLifeCapImage from './assets/thugLifeCap.png';
+import thugLifeJointImage from './assets/thugLifeJoint.png';
+import joelImage from './assets/Joel-Scholten-1280x1280.webp';
+
 
 interface QuizQuestion {
     question: string;
@@ -83,7 +87,8 @@ const answerImages = {
     'Eclipse': eclipseImage,
     'Sun': sunImage
 };
-const splineUrl = 'https://prod.spline.design/UnWOMLkS9rzBfEZy/scene.splinecode';
+
+// const splineUrl = 'https://prod.spline.design/UnWOMLkS9rzBfEZy/scene.splinecode';
 
 function App() {
     // State
@@ -92,7 +97,6 @@ function App() {
     const [activeItem, setActiveItem] = useState<QuizQuestion>({answer: 'Jupiter',} as QuizQuestion);
     const [areAnswersCorrect, setAreAnswersCorrect] = useState<boolean>(false);
     const [showCards, setShowCards] = useState<boolean>(false);
-    const [isLoaded, setIsLoaded] = useState(false);
 
     // Framer motion
     const vCard = {
@@ -108,24 +112,24 @@ function App() {
         hidden: {transition: {duration: 2, staggerChildren: 0.2}},
     };
 
+    const vThug = {
+        visible: {scale: 1, transition: {duration: 2}},
+        hidden: {scale: 0, transition: {duration: 2}},
+    };
+    const vThugCap = {
+        visible: {x: 0, transition: {duration: 2}},
+        hidden: {x: '-100vh', transition: {duration: 2}},
+    };
+    const vThugGlasses = {
+        visible: {x: 0, transition: {duration: 2}},
+        hidden: {x: '100vh', transition: {duration: 2}},
+    };
+    const vThugJoint = {
+        visible: {y: 0, rotateY: 180, transition: {duration: 2}},
+        hidden: {y: '100vh', transition: {duration: 2}},
+    };
+
     // Effects
-    useEffect(() => {
-        const preloadSplineAsset = async () => {
-            try {
-                // Preload the Spline asset by fetching it
-                const response = await fetch(splineUrl, { method: 'HEAD' });
-                if (response.ok) {
-                    setIsLoaded(true);
-                    console.log('success');
-                }
-            } catch (error) {
-                console.error('Error preloading Spline asset:', error);
-            }
-        };
-
-        preloadSplineAsset();
-    }, [splineUrl]);
-
     useEffect(() => {
         const userAnswers = Object.values(answers);
 
@@ -255,10 +259,39 @@ function App() {
                             <motion.div transition={{duration: 2, delay: 1}} layoutId={'S2'}>S</motion.div>
                         </div>
                     }
-                    <div className={'spline'}>
-                        {areAnswersCorrect && isLoaded &&
-                            <Spline scene={'https://prod.spline.design/UnWOMLkS9rzBfEZy/scene.splinecode'}/>}
-                    </div>
+                    {
+                        areAnswersCorrect &&
+                        <div className={'thug'}>
+                            <motion.div className={'cap'} style={{
+                                backgroundImage: `url(${thugLifeCapImage})`,
+                                backgroundPosition: 'center center',
+                                backgroundSize: 'contain',
+                                backgroundRepeat: 'no-repeat',
+                            }} initial={'hidden'} variants={vThugCap} animate={'visible'}
+                            ></motion.div>
+                            <motion.div className={'glasses'} style={{
+                                backgroundImage: `url(${thugLifeImage})`,
+                                backgroundPosition: 'center center',
+                                backgroundSize: 'contain',
+                                backgroundRepeat: 'no-repeat',
+                            }} initial={'hidden'} variants={vThugGlasses} animate={'visible'}
+                            ></motion.div>
+                            <motion.div className={'joint'} style={{
+                                backgroundImage: `url(${thugLifeJointImage})`,
+                                backgroundPosition: 'center center',
+                                backgroundSize: 'contain',
+                                backgroundRepeat: 'no-repeat',
+                            }} initial={'hidden'} variants={vThugJoint} animate={'visible'}
+                            ></motion.div>
+                            <motion.div className={'joel'} style={{
+                                backgroundImage: `url(${joelImage})`,
+                                backgroundPosition: 'center center',
+                                backgroundSize: 'contain',
+                                backgroundRepeat: 'no-repeat',
+                            }} initial={'hidden'} variants={vThug} animate={'visible'}
+                            ></motion.div>
+                        </div>
+                    }
                 </div>
 
                 {
