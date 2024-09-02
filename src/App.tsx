@@ -113,20 +113,20 @@ function App() {
     };
 
     const vThug = {
-        visible: {scale: 1, transition: {duration: 2}},
-        hidden: {scale: 0, transition: {duration: 2}},
+        visible: {scale: 1, transition: {duration: 2, delay: 2}},
+        hidden: {scale: 0, transition: {duration: 2, delay: 2}},
     };
     const vThugCap = {
-        visible: {x: 0, transition: {duration: 2}},
-        hidden: {x: '-100vh', transition: {duration: 2}},
+        visible: {x: 0, transition: {duration: 2, delay: 2}},
+        hidden: {x: '-120vh', transition: {duration: 2, delay: 2}},
     };
     const vThugGlasses = {
-        visible: {x: 0, transition: {duration: 2}},
-        hidden: {x: '100vh', transition: {duration: 2}},
+        visible: {x: 0, transition: {duration: 2, delay: 2}},
+        hidden: {x: '120vh', transition: {duration: 2, delay: 2}},
     };
     const vThugJoint = {
-        visible: {y: 0, rotateY: 180, transition: {duration: 2}},
-        hidden: {y: '100vh', transition: {duration: 2}},
+        visible: {y: 0, rotateY: 180, transition: {duration: 2, delay: 2}},
+        hidden: {y: '120vh', rotateY: 0, transition: {duration: 2, delay: 2}},
     };
 
     // Effects
