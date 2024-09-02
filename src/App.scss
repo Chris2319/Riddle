@@ -13,9 +13,7 @@ body {
 
 $gap: 1rem;
 .wrapper {
-  gap: $gap;
-  padding: $gap;
-  height: calc(100% - #{$gap} - #{$gap});
+  height: 100%;
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
