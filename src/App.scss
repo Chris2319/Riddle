@@ -194,3 +194,39 @@ h3 {
   }
 
 }
+
+.bitches {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  margin: 0 auto;
+  width: 100%;
+
+  .row {
+    display: flex;
+    justify-content: center;
+
+    div {
+      width: 8rem;
+      aspect-ratio: 1/1.2;
+    }
+  }
+
+  .hand1, .hand2 {
+    position: absolute;
+  }
+
+  .hand1 {
+    transform: rotateZ(-20deg);
+    top: -10%;
+    left: -40%;
+  }
+
+  .hand2 {
+    transform: rotateY(180deg) rotateZ(-20deg);
+    top: 0;
+    right: -40%
+  }
+
+
+}

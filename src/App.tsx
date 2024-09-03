@@ -19,6 +19,55 @@ import thugLifeCapImage from './assets/thugLifeCap.png';
 import thugLifeJointImage from './assets/thugLifeJoint.png';
 import joelImage from './assets/Joel-Scholten-1280x1280.webp';
 
+import AgnieszkaImage from './assets/bitches/Agnieszka-Cwienczek-1280x1280.webp';
+import AnhImage from './assets/bitches/Anh-Duc-Nguyen-1280x1325.webp';
+import ClemensImage from './assets/bitches/Clemens-Florian-1280x1280.webp';
+import CodrinImage from './assets/bitches/Codrin-400x400-1.jpg';
+import CoenImage from './assets/bitches/Coen-2-lageResolutie-400x400-1.jpg';
+import DennisImage from './assets/bitches/Dennis-01-LageResolutie-1-400x400-1.jpg';
+import EvaImage from './assets/bitches/Eva-ter-Wielen-1280x1280.webp';
+import FerranImage from './assets/bitches/Ferran-Tombal-1280x1401.webp';
+import JelleImage from './assets/bitches/Jelle-Kalshoven-1280x1280.webp';
+import KevinImage from './assets/bitches/Kevin-van-Rijn-1280x1280.webp';
+import LeonImage from './assets/bitches/Leon-Elshof-1280x1354.webp';
+import MarkImage from './assets/bitches/Mark-Leck-1280x1257.webp';
+import NilsImage from './assets/bitches/Nils-van-Gestel-1280x1363.webp';
+import SkipImage from './assets/bitches/Skip-van-der-Meer-1280x1440.webp';
+import YvorImage from './assets/bitches/Yvor-van-den-Beuken-1280x1370.webp';
+import DucoImage from './assets/bitches/Duco-van-der-Kooij-1280x1288.webp';
+import DucImage from './assets/bitches/Duc-Janssen-1280x1280.webp';
+import EdwinImage from './assets/bitches/Edwin-Lodder-1280x1353.webp';
+import ErwinImage from './assets/bitches/Erwin-Beumber-1280x1287.webp';
+import JordyImage from './assets/bitches/Jordy-de-Jong-1280x1280.webp';
+import Kateryna from './assets/bitches/Kateryna-Hordynska-1280x1282.webp';
+import HandImage from './assets/bitches/Cartoon-hand-,-cute-arm-in-white-glove-on-transparent-background-PNG.png';
+
+const bitchesImages = [
+    AgnieszkaImage,
+    AnhImage,
+    ClemensImage,
+    CodrinImage,
+    CoenImage,
+    DennisImage,
+    EvaImage,
+    FerranImage,
+    DucoImage,
+    DucImage,
+    EdwinImage,
+]
+
+const bitchesImages2 = [
+    JelleImage,
+    KevinImage,
+    LeonImage,
+    MarkImage,
+    NilsImage,
+    SkipImage,
+    YvorImage,
+    Kateryna,
+    JordyImage,
+    ErwinImage,
+]
 
 interface QuizQuestion {
     question: string;
@@ -88,8 +137,6 @@ const answerImages = {
     'Sun': sunImage
 };
 
-// const splineUrl = 'https://prod.spline.design/UnWOMLkS9rzBfEZy/scene.splinecode';
-
 function App() {
     // State
     const [data] = useState<QuizData>(jsonData as QuizData);
@@ -137,7 +184,9 @@ function App() {
             correctAnswer.toLowerCase() === userAnswers[index].toLowerCase()
         );
         if (allCorrect) {
-            setTimeout(() => setAreAnswersCorrect(true), 500);
+            setTimeout(() => {
+                setAreAnswersCorrect(true);
+            }, 500);
         } else {
             setAreAnswersCorrect(false);
         }
@@ -292,6 +341,107 @@ function App() {
                             ></motion.div>
                         </div>
                     }
+                    {
+                        areAnswersCorrect &&
+                        <div className={'bitches'}>
+                            <div className={'row'}>
+                                {
+                                    bitchesImages.map((image) => (
+                                        <motion.div key={image}
+                                                    initial={{opacity: 0, x: '-100vw'}}
+                                                    animate={{opacity: 1, x: 0, y: [0, -20, 0]}}
+                                                    exit={{opacity: 0}}
+                                                    transition={{
+                                                        x: {duration: 1, ease: "easeOut"}, // Slide-in transition
+                                                        y: {
+                                                            duration: 2, // Duration of the up and down animation
+                                                            delay: Math.random() * 2 + 1,
+                                                            repeat: Infinity, // Repeat infinitely
+                                                            repeatType: "loop", // Loop the up and down animation
+                                                            ease: "easeInOut", // Easing for up and down animation
+                                                        },
+                                                    }}
+                                                    style={{
+                                                        backgroundImage: `url(${image})`,
+                                                        backgroundPosition: 'center center',
+                                                        backgroundSize: 'cover',
+                                                        backgroundRepeat: 'no-repeat',
+                                                    }}>
+
+                                            <div
+                                                className={'hand1'}
+                                                style={{
+                                                    backgroundImage: `url(${HandImage})`,
+                                                    backgroundPosition: 'center center',
+                                                    backgroundSize: 'cover',
+                                                    backgroundRepeat: 'no-repeat',
+                                                }}></div>
+                                            <div
+                                                className={'hand2'}
+                                                style={{
+                                                    backgroundImage: `url(${HandImage})`,
+                                                    backgroundPosition: 'center center',
+                                                    backgroundSize: 'cover',
+                                                    backgroundRepeat: 'no-repeat',
+                                                }}></div>
+
+                                        </motion.div>
+                                    ))
+                                }
+                            </div>
+                            <div className={'row'}>
+                                {
+                                    bitchesImages2.map((image) => (
+                                        <motion.div key={image}
+                                                    initial={{opacity: 0, x: '100vw'}}
+                                                    animate={{opacity: 1, x: 0, y: [0, -20, 0]}}
+                                                    exit={{opacity: 0}}
+                                                    transition={{
+                                                        x: {duration: 1, ease: "easeOut"}, // Slide-in transition
+                                                        y: {
+                                                            duration: 2, // Duration of the up and down animation
+                                                            delay: Math.random() * 2 + 1,
+                                                            repeat: Infinity, // Repeat infinitely
+                                                            repeatType: "loop", // Loop the up and down animation
+                                                            ease: "easeInOut", // Easing for up and down animation
+                                                        },
+                                                    }}
+                                                    style={{
+                                                        backgroundImage: `url(${image})`,
+                                                        backgroundPosition: 'center center',
+                                                        backgroundSize: 'cover',
+                                                        backgroundRepeat: 'no-repeat',
+                                                    }}>
+
+                                            <div
+                                                className={'hand1'}
+                                                style={{
+                                                    backgroundImage: `url(${HandImage})`,
+                                                    backgroundPosition: 'center center',
+                                                    backgroundSize: 'cover',
+                                                    backgroundRepeat: 'no-repeat',
+                                                }}></div>
+                                            <div
+                                                className={'hand2'}
+                                                style={{
+                                                    backgroundImage: `url(${HandImage})`,
+                                                    backgroundPosition: 'center center',
+                                                    backgroundSize: 'cover',
+                                                    backgroundRepeat: 'no-repeat',
+                                                }}></div>
+
+                                        </motion.div>
+                                    ))
+                                }
+                            </div>
+                        </div>
+                    }
+                    {/*{*/}
+                    {/*    playAudio &&*/}
+                    {/*    <audio autoPlay={true} controls>*/}
+                    {/*        <source src={song} type="audio/mp3"/>*/}
+                    {/*    </audio>*/}
+                    {/*}*/}
                 </div>
 
                 {
