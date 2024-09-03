@@ -41,6 +41,7 @@ import ErwinImage from './assets/bitches/Erwin-Beumber-1280x1287.webp';
 import JordyImage from './assets/bitches/Jordy-de-Jong-1280x1280.webp';
 import Kateryna from './assets/bitches/Kateryna-Hordynska-1280x1282.webp';
 import HandImage from './assets/bitches/Cartoon-hand-,-cute-arm-in-white-glove-on-transparent-background-PNG.png';
+import YouTube from "react-youtube";
 
 const bitchesImages = [
     AgnieszkaImage,
@@ -138,11 +139,20 @@ const answerImages = {
 };
 
 function App() {
+    const opts = {
+        height: '0',
+        width: '0',
+        playerVars: {
+            autoplay: 1,
+        },
+    };
+
     // State
     const [data] = useState<QuizData>(jsonData as QuizData);
     const [answers, setAnswers] = useState<Answers>(emptyAnswers);
     const [activeItem, setActiveItem] = useState<QuizQuestion>({answer: 'Jupiter',} as QuizQuestion);
     const [areAnswersCorrect, setAreAnswersCorrect] = useState<boolean>(false);
+    const [playAudio, setPlayAudio] = useState<boolean>(false);
     const [showCards, setShowCards] = useState<boolean>(false);
 
     // Framer motion
@@ -184,11 +194,7 @@ function App() {
             correctAnswer.toLowerCase() === userAnswers[index].toLowerCase()
         );
         if (allCorrect) {
-            setTimeout(() => {
-                setAreAnswersCorrect(true);
-            }, 500);
-        } else {
-            setAreAnswersCorrect(false);
+            if (!playAudio) setPlayAudio(true);
         }
 
     }, [answers]);
@@ -268,227 +274,233 @@ function App() {
     }
 
     return (
-        <div className={'wrapper'}>
-            <AnimatePresence>
-                {
-                    isLocalhost() &&
-                    <button onClick={() => setAnswers({
-                        'Jupiter': 'Jupiter',
-                        'Orion': 'Orion',
-                        'Earth': 'Earth',
-                        'Leo': 'Leo',
-                        'Saturn': 'Saturn',
-                        'Betelgeuse': 'Betelgeuse',
-                        'Io': 'Io',
-                        'Titan': 'Titan',
-                        'Comet': 'Comet',
-                        'Hubble': 'Hubble',
-                        'Eclipse': 'Eclipse',
-                        'Sun': 'Sun'
-                    })}>correct all
-                    </button>
-                }
-                {areAnswersCorrect && <button onClick={() => setShowCards(!showCards)}>Toggle cards</button>}
+        <>
+            <div className={'wrapper'}>
+                <AnimatePresence>
+                    {
+                        isLocalhost() &&
+                        <button onClick={() => setAnswers({
+                            'Jupiter': 'Jupiter',
+                            'Orion': 'Orion',
+                            'Earth': 'Earth',
+                            'Leo': 'Leo',
+                            'Saturn': 'Saturn',
+                            'Betelgeuse': 'Betelgeuse',
+                            'Io': 'Io',
+                            'Titan': 'Titan',
+                            'Comet': 'Comet',
+                            'Hubble': 'Hubble',
+                            'Eclipse': 'Eclipse',
+                            'Sun': 'Sun'
+                        })}>correct all
+                        </button>
+                    }
+                    {areAnswersCorrect && <button onClick={() => setShowCards(!showCards)}>Toggle cards</button>}
 
-                <div className={'background '}>
-                    {
-                        areAnswersCorrect && <div className={'finalAnswer'}>
-                            <motion.div transition={{duration: 2, delay: 1}} layoutId={'J'}>J</motion.div>
-                            <motion.div transition={{duration: 2, delay: 1}} layoutId={'O'}>O</motion.div>
-                            <motion.div transition={{duration: 2, delay: 1}} layoutId={'E'}>E</motion.div>
-                            <motion.div transition={{duration: 2, delay: 1}} layoutId={'L'}>L</motion.div>
-                            <motion.div transition={{duration: 2, delay: 1}} layoutId={'S'}>S</motion.div>
-                            <motion.div transition={{duration: 2, delay: 1}}>&nbsp;</motion.div>
-                            <motion.div transition={{duration: 2, delay: 1}} layoutId={'B'}>B</motion.div>
-                            <motion.div transition={{duration: 2, delay: 1}} layoutId={'I'}>I</motion.div>
-                            <motion.div transition={{duration: 2, delay: 1}} layoutId={'T'}>T</motion.div>
-                            <motion.div transition={{duration: 2, delay: 1}} layoutId={'C'}>C</motion.div>
-                            <motion.div transition={{duration: 2, delay: 1}} layoutId={'H'}>H</motion.div>
-                            <motion.div transition={{duration: 2, delay: 1}} layoutId={'E2'}>E</motion.div>
-                            <motion.div transition={{duration: 2, delay: 1}} layoutId={'S2'}>S</motion.div>
-                        </div>
-                    }
-                    {
-                        areAnswersCorrect &&
-                        <div className={'thug'}>
-                            <motion.div className={'cap'} style={{
-                                backgroundImage: `url(${thugLifeCapImage})`,
-                                backgroundPosition: 'center center',
-                                backgroundSize: 'contain',
-                                backgroundRepeat: 'no-repeat',
-                            }} initial={'hidden'} variants={vThugCap} animate={'visible'}
-                            ></motion.div>
-                            <motion.div className={'glasses'} style={{
-                                backgroundImage: `url(${thugLifeImage})`,
-                                backgroundPosition: 'center center',
-                                backgroundSize: 'contain',
-                                backgroundRepeat: 'no-repeat',
-                            }} initial={'hidden'} variants={vThugGlasses} animate={'visible'}
-                            ></motion.div>
-                            <motion.div className={'joint'} style={{
-                                backgroundImage: `url(${thugLifeJointImage})`,
-                                backgroundPosition: 'center center',
-                                backgroundSize: 'contain',
-                                backgroundRepeat: 'no-repeat',
-                            }} initial={'hidden'} variants={vThugJoint} animate={'visible'}
-                            ></motion.div>
-                            <motion.div className={'joel'} style={{
-                                backgroundImage: `url(${joelImage})`,
-                                backgroundPosition: 'center center',
-                                backgroundSize: 'contain',
-                                backgroundRepeat: 'no-repeat',
-                            }} initial={'hidden'} variants={vThug} animate={'visible'}
-                            ></motion.div>
-                        </div>
-                    }
-                    {
-                        areAnswersCorrect &&
-                        <div className={'bitches'}>
-                            <div className={'row'}>
-                                {
-                                    bitchesImages.map((image) => (
-                                        <motion.div key={image}
-                                                    initial={{opacity: 0, x: '-100vw'}}
-                                                    animate={{opacity: 1, x: 0, y: [0, -20, 0]}}
-                                                    exit={{opacity: 0}}
-                                                    transition={{
-                                                        x: {duration: 1, ease: "easeOut"}, // Slide-in transition
-                                                        y: {
-                                                            duration: 2, // Duration of the up and down animation
-                                                            delay: Math.random() * 2 + 1,
-                                                            repeat: Infinity, // Repeat infinitely
-                                                            repeatType: "loop", // Loop the up and down animation
-                                                            ease: "easeInOut", // Easing for up and down animation
-                                                        },
-                                                    }}
+                    <div className={'background '}>
+                        {
+                            areAnswersCorrect && <div className={'finalAnswer'}>
+                                <motion.div transition={{duration: 2, delay: 1}} layoutId={'J'}>J</motion.div>
+                                <motion.div transition={{duration: 2, delay: 1}} layoutId={'O'}>O</motion.div>
+                                <motion.div transition={{duration: 2, delay: 1}} layoutId={'E'}>E</motion.div>
+                                <motion.div transition={{duration: 2, delay: 1}} layoutId={'L'}>L</motion.div>
+                                <motion.div transition={{duration: 2, delay: 1}} layoutId={'S'}>S</motion.div>
+                                <motion.div transition={{duration: 2, delay: 1}}>&nbsp;</motion.div>
+                                <motion.div transition={{duration: 2, delay: 1}} layoutId={'B'}>B</motion.div>
+                                <motion.div transition={{duration: 2, delay: 1}} layoutId={'I'}>I</motion.div>
+                                <motion.div transition={{duration: 2, delay: 1}} layoutId={'T'}>T</motion.div>
+                                <motion.div transition={{duration: 2, delay: 1}} layoutId={'C'}>C</motion.div>
+                                <motion.div transition={{duration: 2, delay: 1}} layoutId={'H'}>H</motion.div>
+                                <motion.div transition={{duration: 2, delay: 1}} layoutId={'E2'}>E</motion.div>
+                                <motion.div transition={{duration: 2, delay: 1}} layoutId={'S2'}>S</motion.div>
+                            </div>
+                        }
+                        {
+                            areAnswersCorrect &&
+                            <div className={'thug'}>
+                                <motion.div className={'cap'} style={{
+                                    backgroundImage: `url(${thugLifeCapImage})`,
+                                    backgroundPosition: 'center center',
+                                    backgroundSize: 'contain',
+                                    backgroundRepeat: 'no-repeat',
+                                }} initial={'hidden'} variants={vThugCap} animate={'visible'}
+                                ></motion.div>
+                                <motion.div className={'glasses'} style={{
+                                    backgroundImage: `url(${thugLifeImage})`,
+                                    backgroundPosition: 'center center',
+                                    backgroundSize: 'contain',
+                                    backgroundRepeat: 'no-repeat',
+                                }} initial={'hidden'} variants={vThugGlasses} animate={'visible'}
+                                ></motion.div>
+                                <motion.div className={'joint'} style={{
+                                    backgroundImage: `url(${thugLifeJointImage})`,
+                                    backgroundPosition: 'center center',
+                                    backgroundSize: 'contain',
+                                    backgroundRepeat: 'no-repeat',
+                                }} initial={'hidden'} variants={vThugJoint} animate={'visible'}
+                                ></motion.div>
+                                <motion.div className={'joel'} style={{
+                                    backgroundImage: `url(${joelImage})`,
+                                    backgroundPosition: 'center center',
+                                    backgroundSize: 'contain',
+                                    backgroundRepeat: 'no-repeat',
+                                }} initial={'hidden'} variants={vThug} animate={'visible'}
+                                ></motion.div>
+                            </div>
+                        }
+                        {
+                            areAnswersCorrect &&
+                            <div className={'bitches'}>
+                                <div className={'row'}>
+                                    {
+                                        bitchesImages.map((image) => (
+                                            <motion.div key={image}
+                                                        initial={{opacity: 0, x: '-100vw'}}
+                                                        animate={{opacity: 1, x: 0, y: [0, -20, 0]}}
+                                                        exit={{opacity: 0}}
+                                                        transition={{
+                                                            x: {duration: 1, ease: "easeOut"}, // Slide-in transition
+                                                            y: {
+                                                                duration: 2, // Duration of the up and down animation
+                                                                delay: Math.random() * 2 + 1,
+                                                                repeat: Infinity, // Repeat infinitely
+                                                                repeatType: "loop", // Loop the up and down animation
+                                                                ease: "easeInOut", // Easing for up and down animation
+                                                            },
+                                                        }}
+                                                        style={{
+                                                            backgroundImage: `url(${image})`,
+                                                            backgroundPosition: 'center center',
+                                                            backgroundSize: 'cover',
+                                                            backgroundRepeat: 'no-repeat',
+                                                        }}>
+
+                                                <div
+                                                    className={'hand1'}
                                                     style={{
-                                                        backgroundImage: `url(${image})`,
+                                                        backgroundImage: `url(${HandImage})`,
                                                         backgroundPosition: 'center center',
                                                         backgroundSize: 'cover',
                                                         backgroundRepeat: 'no-repeat',
-                                                    }}>
-
-                                            <div
-                                                className={'hand1'}
-                                                style={{
-                                                    backgroundImage: `url(${HandImage})`,
-                                                    backgroundPosition: 'center center',
-                                                    backgroundSize: 'cover',
-                                                    backgroundRepeat: 'no-repeat',
-                                                }}></div>
-                                            <div
-                                                className={'hand2'}
-                                                style={{
-                                                    backgroundImage: `url(${HandImage})`,
-                                                    backgroundPosition: 'center center',
-                                                    backgroundSize: 'cover',
-                                                    backgroundRepeat: 'no-repeat',
-                                                }}></div>
-
-                                        </motion.div>
-                                    ))
-                                }
-                            </div>
-                            <div className={'row'}>
-                                {
-                                    bitchesImages2.map((image) => (
-                                        <motion.div key={image}
-                                                    initial={{opacity: 0, x: '100vw'}}
-                                                    animate={{opacity: 1, x: 0, y: [0, -20, 0]}}
-                                                    exit={{opacity: 0}}
-                                                    transition={{
-                                                        x: {duration: 1, ease: "easeOut"}, // Slide-in transition
-                                                        y: {
-                                                            duration: 2, // Duration of the up and down animation
-                                                            delay: Math.random() * 2 + 1,
-                                                            repeat: Infinity, // Repeat infinitely
-                                                            repeatType: "loop", // Loop the up and down animation
-                                                            ease: "easeInOut", // Easing for up and down animation
-                                                        },
-                                                    }}
+                                                    }}></div>
+                                                <div
+                                                    className={'hand2'}
                                                     style={{
-                                                        backgroundImage: `url(${image})`,
+                                                        backgroundImage: `url(${HandImage})`,
                                                         backgroundPosition: 'center center',
                                                         backgroundSize: 'cover',
                                                         backgroundRepeat: 'no-repeat',
-                                                    }}>
+                                                    }}></div>
 
-                                            <div
-                                                className={'hand1'}
-                                                style={{
-                                                    backgroundImage: `url(${HandImage})`,
-                                                    backgroundPosition: 'center center',
-                                                    backgroundSize: 'cover',
-                                                    backgroundRepeat: 'no-repeat',
-                                                }}></div>
-                                            <div
-                                                className={'hand2'}
-                                                style={{
-                                                    backgroundImage: `url(${HandImage})`,
-                                                    backgroundPosition: 'center center',
-                                                    backgroundSize: 'cover',
-                                                    backgroundRepeat: 'no-repeat',
-                                                }}></div>
+                                            </motion.div>
+                                        ))
+                                    }
+                                </div>
+                                <div className={'row'}>
+                                    {
+                                        bitchesImages2.map((image) => (
+                                            <motion.div key={image}
+                                                        initial={{opacity: 0, x: '100vw'}}
+                                                        animate={{opacity: 1, x: 0, y: [0, -20, 0]}}
+                                                        exit={{opacity: 0}}
+                                                        transition={{
+                                                            x: {duration: 1, ease: "easeOut"}, // Slide-in transition
+                                                            y: {
+                                                                duration: 2, // Duration of the up and down animation
+                                                                delay: Math.random() * 2 + 1,
+                                                                repeat: Infinity, // Repeat infinitely
+                                                                repeatType: "loop", // Loop the up and down animation
+                                                                ease: "easeInOut", // Easing for up and down animation
+                                                            },
+                                                        }}
+                                                        style={{
+                                                            backgroundImage: `url(${image})`,
+                                                            backgroundPosition: 'center center',
+                                                            backgroundSize: 'cover',
+                                                            backgroundRepeat: 'no-repeat',
+                                                        }}>
 
-                                        </motion.div>
-                                    ))
-                                }
+                                                <div
+                                                    className={'hand1'}
+                                                    style={{
+                                                        backgroundImage: `url(${HandImage})`,
+                                                        backgroundPosition: 'center center',
+                                                        backgroundSize: 'cover',
+                                                        backgroundRepeat: 'no-repeat',
+                                                    }}></div>
+                                                <div
+                                                    className={'hand2'}
+                                                    style={{
+                                                        backgroundImage: `url(${HandImage})`,
+                                                        backgroundPosition: 'center center',
+                                                        backgroundSize: 'cover',
+                                                        backgroundRepeat: 'no-repeat',
+                                                    }}></div>
+
+                                            </motion.div>
+                                        ))
+                                    }
+                                </div>
                             </div>
-                        </div>
+                        }
+                    </div>
+
+                    {
+                        data.quiz.map((item: QuizQuestion, index: number) => (
+                            <motion.div
+                                onMouseEnter={() => setActiveItem(item)}
+                                onMouseLeave={() => setActiveItem({} as QuizQuestion)}
+                                initial={vCard.hidden}
+                                animate={areAnswersCorrect && !showCards ? vCard.hidden : vCard.visible}
+                                key={item.answer}
+                                className={`card ${removeBlur(item) ? 'card--noBlur' : ''}`}
+
+                            >
+                                <div className={'card__image'} style={getStylePerImage(item)}></div>
+                                <h3 className={'question'}>{item.question}</h3>
+
+                                {
+                                    handleCorrect(item, index) ?
+                                        <div
+                                            className={'answer'}>{item.answer.split('').map((l: string, li: number) =>
+                                            li === 0 ? (areAnswersCorrect ? <h3>{l.toUpperCase()}</h3> :
+                                                    <motion.h3 transition={{duration: 2, delay: 1}}
+                                                               layoutId={(index === 10 || index === 11 || index === 12) ? l.toUpperCase() + '2' : l.toUpperCase()}>{l}</motion.h3>) :
+                                                <h3>{l}</h3>)}</div> : <input
+                                            className={handleCorrect(item, index) ? 'input--correct' : 'input--wrong'}
+                                            placeholder={'?'.repeat(item.answer.length)}
+                                            disabled={handleCorrect(item, index)}
+                                            value={answers[item.answer as keyof typeof answers]}
+                                            onChange={(e) => handleOnChange(e.target.value, item.answer)}/>
+                                }
+
+                                <motion.ul variants={vUl} initial={'hidden'}
+                                           animate={removeBlur(item) ? 'hidden' : 'visible'}>
+                                    {item.hints.map((hint: string, hIndex: number) => (
+                                        <motion.li
+                                            variants={vLi}
+                                            initial={'visible'}
+                                            animate={removeBlur(item) ? 'hidden' : 'visible'}
+                                            transition={{delay: 0.2 * hIndex, duration: 0.8}}
+                                            key={hint}>{hint}</motion.li>
+                                    ))}
+                                </motion.ul>
+                            </motion.div>
+                        ))
                     }
-                    {/*{*/}
-                    {/*    playAudio &&*/}
-                    {/*    <audio autoPlay={true} controls>*/}
-                    {/*        <source src={song} type="audio/mp3"/>*/}
-                    {/*    </audio>*/}
-                    {/*}*/}
-                </div>
 
-                {
-                    data.quiz.map((item: QuizQuestion, index: number) => (
-                        <motion.div
-                            onMouseEnter={() => setActiveItem(item)}
-                            onMouseLeave={() => setActiveItem({} as QuizQuestion)}
-                            initial={vCard.hidden}
-                            animate={areAnswersCorrect && !showCards ? vCard.hidden : vCard.visible}
-                            key={item.answer}
-                            className={`card ${removeBlur(item) ? 'card--noBlur' : ''}`}
+                </AnimatePresence>
+            </div>
+            {
+                playAudio &&
+                <YouTube videoId="A8V0-gLxeB0" onPlay={() => {
+                    setTimeout(() => {
+                        setAreAnswersCorrect(true);
+                    }, 8000);
+                }} opts={opts}/>
+            }
+        </>
 
-                        >
-                            <div className={'card__image'} style={getStylePerImage(item)}></div>
-                            <h3 className={'question'}>{item.question}</h3>
-
-                            {
-                                handleCorrect(item, index) ?
-                                    <div
-                                        className={'answer'}>{item.answer.split('').map((l: string, li: number) =>
-                                        li === 0 ? (areAnswersCorrect ? <h3>{l.toUpperCase()}</h3> :
-                                                <motion.h3 transition={{duration: 2, delay: 1}}
-                                                           layoutId={(index === 10 || index === 11 || index === 12) ? l.toUpperCase() + '2' : l.toUpperCase()}>{l}</motion.h3>) :
-                                            <h3>{l}</h3>)}</div> : <input
-                                        className={handleCorrect(item, index) ? 'input--correct' : 'input--wrong'}
-                                        placeholder={'?'.repeat(item.answer.length)}
-                                        disabled={handleCorrect(item, index)}
-                                        value={answers[item.answer as keyof typeof answers]}
-                                        onChange={(e) => handleOnChange(e.target.value, item.answer)}/>
-                            }
-
-                            <motion.ul variants={vUl} initial={'hidden'}
-                                       animate={removeBlur(item) ? 'hidden' : 'visible'}>
-                                {item.hints.map((hint: string, hIndex: number) => (
-                                    <motion.li
-                                        variants={vLi}
-                                        initial={'visible'}
-                                        animate={removeBlur(item) ? 'hidden' : 'visible'}
-                                        transition={{delay: 0.2 * hIndex, duration: 0.8}}
-                                        key={hint}>{hint}</motion.li>
-                                ))}
-                            </motion.ul>
-                        </motion.div>
-                    ))
-                }
-            </AnimatePresence>
-        </div>
     );
 }
 
